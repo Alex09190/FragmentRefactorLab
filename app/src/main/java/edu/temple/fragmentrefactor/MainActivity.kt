@@ -1,5 +1,6 @@
 package edu.temple.fragmentrefactor
 
+import android.graphics.ImageFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -11,18 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val displayTextView = findViewById<TextView>(R.id.displayTextView)
-        val nameEditText = findViewById<EditText>(R.id.nameEditText)
-        val changeButton = findViewById<Button>(R.id.changeButton)
+        val tempFrag = nameFragment()
 
-        changeButton.setOnClickListener {
-            val name = nameEditText.text
 
-            displayTextView.text = if (name.isNotBlank()) {
-                "Hello, $name!"
-            } else {
-                "Please enter your name"
-            }
-        }
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragmentContainerView, tempFrag )
+
     }
 }
